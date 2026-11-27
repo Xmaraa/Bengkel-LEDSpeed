@@ -98,3 +98,8 @@ a.btn.ghost{background:none;border:1px solid var(--line);color:var(--ink)}
 .chips a{padding:.35rem .9rem;border:1.5px solid var(--line);border-radius:99px;text-decoration:none;color:inherit;font-weight:500;background:var(--surface)}
 .chips a[aria-current="true"]{background:var(--primary);border-color:var(--primary);color:var(--on-primary)}
 .steps{margin:0;padding-left:1.2rem;display:grid;gap:.4rem}
+.btn-google{display:flex;align-items:center;justify-content:center;gap:.6rem;width:100%;box-sizing:border-box;padding:.75rem 1rem;background:var(--surface);border:1px solid var(--line);border-radius:8px;color:var(--ink);font-weight:600;text-decoration:none;cursor:pointer}
+.btn-google:hover{border-color:var(--muted)}
+.btn-google img{display:block}
+.or{display:flex;align-items:center;gap:.8rem;color:var(--muted);font-size:.8rem;margin:1rem 0}
+.or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}

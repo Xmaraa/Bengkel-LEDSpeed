@@ -16,7 +16,9 @@
     <a href="{{ route('produk') }}" @if(request()->routeIs('produk')) aria-current="page" @endif>Produk &amp; Harga</a>
     @auth
       <a href="{{ route('reservasi.create') }}" @if(request()->routeIs('reservasi.*')) aria-current="page" @endif>Reservasi</a>
+      @unless(auth()->user()->isAdmin())
       <a href="{{ route('riwayat') }}" @if(request()->routeIs('riwayat*')) aria-current="page" @endif>Riwayat</a>
+      @endunless
       @if(auth()->user()->isAdmin())
         <a href="{{ route('admin.reservasi') }}" @if(request()->routeIs('admin.reservasi*')) aria-current="page" @endif>Admin</a>
         <a href="{{ route('admin.layanan') }}" @if(request()->routeIs('admin.layanan*')) aria-current="page" @endif>Layanan</a>

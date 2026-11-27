@@ -57,6 +57,24 @@ class AuthController extends Controller
         return redirect()->route('reservasi.create');
     }
 
+    public function showPhone()
+    {
+        return view('auth.phone');
+    }
+
+    public function savePhone(Request $request)
+    {
+        $data = $request->validate([
+            'phone' => ['required', 'regex:/^0\d{9,12}$/'],
+        ], [
+            'phone.regex' => 'No. HP harus diawali 0 dan 10–13 digit angka.',
+        ]);
+
+        $request->user()->update($data);
+
+        return redirect()->route('reservasi.create');
+    }
+
     public function logout(Request $request)
     {
         Auth::logout();

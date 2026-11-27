@@ -12,6 +12,7 @@
   @if($errors->any())<p class="err" role="alert">{{ $errors->first() }}</p>@endif
   <div class="scroll">
     <table>
+            <thead><tr><th>Layanan</th><th>Harga</th><th>Status</th><th style="text-align:right">Aksi</th></tr></thead>
       <tbody>
         @forelse($services as $s)
           <tr>
@@ -23,6 +24,7 @@
                 @csrf @method('PATCH')
                 <button class="btn sm ghost" type="submit">{{ $s->is_active ? 'Nonaktifkan' : 'Aktifkan' }}</button>
               </form>
+              <a class="btn sm ghost link" href="{{ route('admin.layanan.edit', $s) }}">Edit</a>
               <form method="POST" action="{{ route('admin.layanan.hapus', $s) }}" style="display:inline" onsubmit="return confirm('Hapus layanan ini?')">
                 @csrf @method('DELETE')
                 <button class="btn sm danger" type="submit">Hapus</button>
@@ -30,7 +32,7 @@
             </td>
           </tr>
         @empty
-          <tr><td>Belum ada layanan.</td></tr>
+          <tr><td colspan="4">Belum ada layanan.</td></tr>
         @endforelse
       </tbody>
     </table>

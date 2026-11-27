@@ -30,6 +30,25 @@ class ProductController extends Controller
         return back()->with('ok', 'Produk ditambahkan.');
     }
 
+    public function edit(Product $product)
+    {
+        return view('admin.product-edit', compact('product'));
+    }
+
+    public function updateFull(Request $request, Product $product)
+    {
+        $data = $request->validate([
+            'kategori' => ['required', Rule::in(array_keys(Product::KATEGORI))],
+            'merek' => ['required', 'string', 'max:60'],
+            'nama' => ['required', 'string', 'max:120'],
+            'spesifikasi' => ['nullable', 'string', 'max:120'],
+            'harga' => ['required', 'integer', 'min:0'],
+        ]);
+        $product->update($data);
+
+        return redirect()->route('admin.produk')->with('ok', 'Produk diperbarui.');
+    }
+
     public function update(Request $request, Product $product)
     {
         $data = $request->validate(['harga' => ['required', 'integer', 'min:0']]);

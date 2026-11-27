@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Kelola Produk')
 @section('content')
-<h2>Kelola produk &amp; harga</h2>
+<h2>Kelola produk &amp; harga TES</h2>
 <div class="card" style="margin-top:1rem">
   <form class="row" method="POST" action="{{ route('admin.produk.simpan') }}" style="margin-top:0">
     @csrf
@@ -23,7 +23,7 @@
 
   <div class="scroll">
     <table>
-      <thead><tr><th>Kategori</th><th>Produk</th><th>Harga</th><th>Status</th><th></th></tr></thead>
+      <thead><tr><th>Kategori</th><th>Produk</th><th>Harga</th><th>Status</th><th>Aksi</th></tr></thead>
       <tbody>
         @forelse($products as $p)
           <tr>
@@ -42,6 +42,7 @@
                 @csrf @method('PATCH')
                 <button class="btn sm ghost" type="submit">{{ $p->is_active ? 'Nonaktifkan' : 'Aktifkan' }}</button>
               </form>
+              <a class="btn sm ghost link" href="{{ route('admin.produk.edit', $p) }}">Edit</a>
               <form method="POST" action="{{ route('admin.produk.hapus', $p) }}" style="display:inline" onsubmit="return confirm('Hapus produk ini?')">
                 @csrf @method('DELETE')
                 <button class="btn sm danger" type="submit">Hapus</button>

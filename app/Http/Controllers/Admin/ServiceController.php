@@ -26,6 +26,22 @@ class ServiceController extends Controller
         return back()->with('ok', 'Layanan ditambahkan.');
     }
 
+    public function edit(Service $service)
+    {
+        return view('admin.service-edit', compact('service'));
+    }
+
+    public function update(Request $request, Service $service)
+    {
+        $data = $request->validate([
+            'nama' => ['required', 'string', 'max:100'],
+            'harga' => ['required', 'integer', 'min:0'],
+        ]);
+        $service->update($data);
+
+        return redirect()->route('admin.layanan')->with('ok', 'Layanan diperbarui.');
+    }
+
     public function toggle(Service $service)
     {
         $service->update(['is_active' => ! $service->is_active]);

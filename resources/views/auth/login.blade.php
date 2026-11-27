@@ -3,6 +3,10 @@
 @section('content')
 <div class="card auth">
   <h2>Masuk</h2>
+  <a class="btn-google" href="{{ route('google.redirect') }}">
+    <span>Lanjutkan dengan Google</span>
+  </a>
+  <div class="or">ATAU</div>
   <form method="POST" action="{{ route('login.proses') }}">
     @csrf
     <label for="email">Email</label>
